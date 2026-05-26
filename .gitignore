@@ -1,0 +1,15 @@
+.env
+roles.json
+*.log
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+bin/
+dist/
+build/
+out/
+
+*.exe
+generated_images/
+*.xlsx

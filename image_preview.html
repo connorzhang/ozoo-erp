@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AI Images</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  .gallery { display: flex; flex-wrap: wrap; gap: 20px; }
+  .card { border: 1px solid #ccc; padding: 10px; border-radius: 8px; max-width: 500px; }
+  img { max-width: 100%; height: auto; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <h2>AI 场景图生成预览</h2>
+  <p>由于接口是异步的，图片可能会显示The image is generating...，请等待几秒后<b>刷新本页面</b>。等真实图片加载出来后，你可以右键另存为到本地。</p>
+  <div class="gallery">
+    <div class="card">
+      <h3>花园水泵 (Garden Water Pump)</h3>
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20high-quality%20realistic%20photo%20of%20a%20modern%20garden%20water%20pump%20sitting%20on%20green%20grass%20next%20to%20a%20beautiful%20flower%20bed%2C%20bright%20sunny%20day%2C%20professional%20product%20photography%2C%208k%20resolution&image_size=square_hd" alt="水泵">
+    </div>
+  </div>
+</body>
+</html>
