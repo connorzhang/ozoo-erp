@@ -80,6 +80,7 @@ func (s *Server) routes() {
 	s.mux.HandleFunc("GET /dict/categories/cascader", s.handleDictCategoryCascader)
 
 	s.mux.HandleFunc("POST /api/selection/import-excel", s.handleImportExcel)
+	s.mux.HandleFunc("POST /api/selection/optimize", s.handleAIOptimize)
 
 	s.mux.HandleFunc("GET /ozon/roles", s.handleOzonRoles)
 	s.mux.HandleFunc("GET /ozon/status", s.handleOzonStatus)
@@ -93,7 +94,13 @@ func (s *Server) routes() {
 	s.mux.HandleFunc("POST /ozon/categories/attribute/values/search", s.proxyPost("/v1/description-category/attribute/values/search", 60*time.Second))
 	s.mux.HandleFunc("POST /ozon/categories/tips", s.proxyPost("/v1/description-category/tips", 60*time.Second))
 
+	// s.mux.HandleFunc("POST /ozon/products/list", s.handleOzonProductList)
 	s.mux.HandleFunc("POST /ozon/products/info/list", s.proxyPost("/v3/product/info/list", 60*time.Second))
+	s.mux.HandleFunc("POST /ozon/products/info/attributes", s.proxyPost("/v3/products/info/attributes", 60*time.Second))
+	s.mux.HandleFunc("POST /ozon/product/info/attributes", s.proxyPost("/v3/product/info/attributes", 60*time.Second))
+	s.mux.HandleFunc("POST /ozon/v4/product/info/attributes", s.proxyPost("/v4/product/info/attributes", 60*time.Second))
+	s.mux.HandleFunc("POST /ozon/v1/product/info/description", s.proxyPost("/v1/product/info/description", 60*time.Second))
+	s.mux.HandleFunc("POST /ozon/v1/product/attributes/update", s.proxyPost("/v1/product/attributes/update", 60*time.Second))
 	s.mux.HandleFunc("POST /ozon/products/import", s.proxyPost("/v3/product/import", 90*time.Second))
 	s.mux.HandleFunc("POST /ozon/products/import/info", s.proxyPost("/v1/product/import/info", 60*time.Second))
 	s.mux.HandleFunc("POST /ozon/products/pictures/import", s.proxyPost("/v1/product/pictures/import", 90*time.Second))

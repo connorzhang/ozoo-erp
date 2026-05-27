@@ -10,9 +10,10 @@ import Tabs from "@/components/Tabs";
 import KeyValueView from "@/components/KeyValueView";
 import { t, upsertTranslations } from "@/utils/translateDict";
 import { translateOnline } from "@/utils/translateOnline";
+import UploadWizard from "@/components/UploadWizard";
 
 export default function Listing() {
-  const [tab, setTab] = useState<"categories" | "products" | "import" | "duplicates">("categories");
+  const [tab, setTab] = useState<"categories" | "products" | "import" | "duplicates" | "upload">("categories");
   const [dictTick, setDictTick] = useState(0);
   const [treeRows, setTreeRows] = useState<Row[]>([]);
   const [treeErr, setTreeErr] = useState<string | null>(null);
@@ -298,6 +299,7 @@ export default function Listing() {
           value={tab}
           onChange={(v) => setTab(v as any)}
           items={[
+            { value: "upload", label: "AI一键上品" },
             { value: "categories", label: "类目树" },
             { value: "products", label: "商品列表" },
             { value: "import", label: "上品任务诊断" },
@@ -453,6 +455,7 @@ export default function Listing() {
           </Panel>
         ) : null}
 
+        {tab === "upload" ? <UploadWizard /> : null}
         {tab === "import" ? <ImportTaskInspector /> : null}
         {tab === "duplicates" ? <DuplicateCheck /> : null}
       </div>

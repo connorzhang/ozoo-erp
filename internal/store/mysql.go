@@ -63,10 +63,8 @@ func EnsureDatabaseAndUser(ctx context.Context, opt MySQLOptions) error {
 
 	for _, host := range []string{"%", "localhost"} {
 		hostLit := sqlStringLiteral(host)
-		if _, err := db.ExecContext(cctx, "CREATE USER IF NOT EXISTS "+userLit+"@"+hostLit+" IDENTIFIED BY "+passLit); err != nil {
-			return err
-		}
-		if _, err := db.ExecContext(cctx, "GRANT ALL PRIVILEGES ON "+opt.DB+".* TO "+userLit+"@"+hostLit); err != nil {
+		// For MySQL 5.5 compatibility, use GRANT to create user
+		if _, err := db.ExecContext(cctx, "GRANT ALL PRIVILEGES ON "+opt.DB+".* TO "+userLit+"@"+hostLit+" IDENTIFIED BY "+passLit); err != nil {
 			return err
 		}
 	}
@@ -111,4 +109,3 @@ var safeIdentRe = regexp.MustCompile(`^[a-zA-Z0-9_]+$`)
 func isSafeIdent(s string) bool {
 	return safeIdentRe.MatchString(s)
 }
-
